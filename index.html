@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruzbia Smart Gift</title>
+<style>
+:root{--pink:#c96b8b;--cream:#fff8f5;--dark:#352832;--gold:#c8a56a;--soft:#f5e6ea}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--cream);color:var(--dark)}
+header{background:white;border-bottom:1px solid #eadde0;position:sticky;top:0;z-index:10}
+.nav{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:15px 20px}
+.logo{font-size:25px;font-weight:800;color:var(--pink)}.logo small{display:block;font-size:11px;color:#777;font-weight:400}
+nav button{border:0;background:none;margin:0 4px;padding:9px 11px;border-radius:10px;cursor:pointer;color:var(--dark)}
+nav button:hover,nav button.active{background:var(--soft);color:var(--pink)}
+.page{display:none;max-width:1150px;margin:auto;padding:35px 20px}.page.active{display:block}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:25px;align-items:center}
+.hero h1{font-size:44px;margin:0 0 12px}.hero h1 span{color:var(--pink)}
+.hero p{font-size:18px;line-height:1.9;color:#665b61}
+.card{background:white;border:1px solid #eee1e4;border-radius:22px;padding:22px;box-shadow:0 8px 30px #63354b0c}
+.ai{background:linear-gradient(145deg,#fff,#f8e9ee);border-radius:28px;padding:30px}
+.ai h2{margin-top:0}.row{display:flex;gap:10px;flex-wrap:wrap}
+input,select,textarea{width:100%;padding:13px;border:1px solid #dfcfd5;border-radius:12px;background:white;font-family:inherit}
+label{font-size:13px;color:#6c6065;display:block;margin:12px 0 6px}
+.btn{background:var(--pink);color:#fff;border:0;padding:13px 18px;border-radius:12px;cursor:pointer;font-weight:700}
+.btn.alt{background:var(--dark)}.btn.light{background:var(--soft);color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product{overflow:hidden;padding:0}.pic{height:160px;background:linear-gradient(135deg,#f6dce4,#fff);display:flex;align-items:center;justify-content:center;font-size:65px}
+.product .body{padding:17px}.price{color:var(--pink);font-weight:800}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}.step{text-align:center;padding:18px;background:#fff;border-radius:16px;border:1px solid #eee1e4}
+.badge{display:inline-block;background:var(--soft);color:var(--pink);padding:5px 9px;border-radius:20px;font-size:12px}
+.result{margin-top:15px;display:none}.result.show{display:block}
+.mock-phone{background:#fff;border:10px solid #30262c;border-radius:32px;padding:18px;min-height:330px;box-shadow:0 20px 40px #0002}
+.qr{width:110px;height:110px;background:repeating-linear-gradient(45deg,#222 0 4px,#fff 4px 8px);margin:12px auto}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi{padding:20px;background:#fff;border-radius:18px;border:1px solid #eee1e4}.kpi b{font-size:25px;display:block;margin-top:6px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden}th,td{padding:13px;border-bottom:1px solid #eee;text-align:right}th{background:#faf0f3}
+footer{text-align:center;padding:35px;color:#887a81}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.steps,.kpis{grid-template-columns:1fr 1fr}.hero h1{font-size:34px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.nav{flex-direction:column;gap:10px}}
+</style>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#c96b8b"></head>
+<body>
+<header><div class="nav">
+<div class="logo">RUZBIA <small>Smart Gift • رزوبيا</small></div>
+<nav>
+<button class="active" onclick="show('home',this)">الرئيسية</button>
+<button onclick="show('shop',this)">الهدايا</button>
+<button onclick="show('design',this)">صمّم هديتك</button>
+<button onclick="show('orders',this)">طلباتي</button>
+<button onclick="show('admin',this)">لوحة الإدارة</button>
+</nav></div></header>
+
+<section id="home" class="page active">
+<div class="hero">
+<div><span class="badge">منصة رزوبيا الذكية</span><h1>الهدية المناسبة<br><span>بلمسة ذكية.</span></h1>
+<p>من اختيار الفكرة إلى التخصيص والتوصيل. رزوبيا تجمع الهدايا، الذكاء الاصطناعي، التجربة الرقمية، والفروع في منصة واحدة.</p>
+<button class="btn" onclick="show('ai',null)">جرّبي مساعد الهدايا 🤖</button>
+</div>
+<div class="ai"><h2>🤖 ماذا أهدي؟</h2><p>اكتبي المناسبة والميزانية، وسنقترح لك هدايا مناسبة.</p>
+<label>المناسبة</label><select id="occasion"><option>عيد ميلاد</option><option>تخرج</option><option>زواج</option><option>مولود</option><option>شكر وتقدير</option><option>بدون مناسبة</option></select>
+<label>لمن؟</label><select id="person"><option>صديقة</option><option>أم</option><option>أب</option><option>زوج/زوجة</option><option>طفل</option><option>معلمة</option></select>
+<label>الميزانية (ريال عماني)</label><input id="budget" type="number" value="20">
+button class="btn" style="margin-top:12px" onclick="recommend()">اقترح لي هدية</button>
+<div id="airesult" class="result card"></div></div>
+</div>
+<div class="steps"><div class="step">🤖<br><b>AI</b><br>اقتراح ذكي</div><div class="step">🎨<br><b>تخصيص</b><br>اسم ورسالة وتصميم</div><div class="step">📱<br><b>تجربة رقمية</b><br>QR / NFC</div><div class="step">🌍<br><b>توسع خليجي</b><br>عمان والكويت ثم الخليج</div></div>
+</section>
+
+<section id="ai" class="page">
+<div class="card"><span class="badge">Ruzbia AI</span><h1>مساعد اختيار الهدية 🤖</h1>
+<p>جاوبي على الأسئلة، والمنصة تبني اقتراحًا أوليًا. في النسخة الفعلية يمكن ربطه بنظام توصية وذكاء اصطناعي حقيقي.</p>
+<div class="grid">
+<div><label>المناسبة</label><select id="a1"><option>تخرج</option><option>عيد ميلاد</option><option>زواج</option><option>مولود</option></select></div>
+<div><label>الشخص</label><select id="a2"><option>صديقة</option><option>أم</option><option>معلمة</option><option>طفل</option></select></div>
+<div><label>الميزانية</label><input id="a3" type="number" value="25"></div></div>
+<button class="btn" style="margin-top:15px" onclick="smart()">اصنع الاقتراح ✨</button><div id="smartResult" class="result"></div></div>
+</section>
+
+<section id="shop" class="page"><h1>الهدايا</h1><p>منتجات رزوبيا قابلة للتخصيص.</p>
+<div class="grid">
+<div class="card product"><div class="pic">🧸🌷</div><div class="body"><h3>بوكس ورد ودب</h3><p>بوكس مخصص بالاسم والرسالة.</p><span class="price">18 ر.ع</span><br><button class="btn light" onclick="add('بوكس ورد ودب',18)">أضف للسلة</button></div></div>
+<div class="card product"><div class="pic">🎓🎁</div><div class="body"><h3>بوكس التخرج</h3><p>هدية تخرج مع بطاقة ورسالة.</p><span class="price">22 ر.ع</span><br><button class="btn light" onclick="add('بوكس التخرج',22)">أضف للسلة</button></div></div>
+<div class="card product"><div class="pic">🇴🇲🎁</div><div class="body"><h3>Ruzbia Oman</h3><p>منتجات محلية بلمسة عصرية.</p><span class="price">25 ر.ع</span><br><button class="btn light" onclick="add('Ruzbia Oman',25)">أضف للسلة</button></div></div>
+</div></section>
+
+<section id="design" class="page"><div class="card"><h1>🎨 صمّم هديتك</h1><p>نموذج أولي لميزة التخصيص.</p>
+<div class="grid"><div><label>اسم المستلم</label><input id="name" placeholder="مثال: مريم"></div><div><label>لون التغليف</label><select><option>وردي</option><option>أبيض</option><option>ذهبي</option><option>حسب المناسبة</option></select></div><div><label>نوع الهدية</label><select><option>بوكس</option><option>دب وورد</option><option>هدية عمانية</option></select></div></div>
+<label>الرسالة</label><textarea id="msg" rows="4" placeholder="اكتبي رسالتك..."></textarea>
+<button class="btn" onclick="preview()">عرض التصميم</button>
+<div id="preview" class="result card" style="text-align:center"><div style="font-size:60px">🎁</div><h2 id="pname"></h2><p id="pmsg"></p><div class="qr"></div><small>امسحي QR لفتح التجربة الرقمية للهدية</small></div>
+</div></section>
+
+<section id="orders" class="page"><div class="card"><h1>📦 طلباتي</h1><table><tr><th>رقم الطلب</th><th>المنتج</th><th>الحالة</th><th>التوصيل</th></tr><tr><td>#RZ1024</td><td>بوكس ورد ودب</td><td><span class="badge">قيد التجهيز</span></td><td>مسقط</td></tr><tr><td>#RZ1018</td><td>بوكس تخرج</td><td><span class="badge">في الطريق</span></td><td>السيب</td></tr></table></div></section>
+
+<section id="admin" class="page"><h1>📊 لوحة إدارة رزوبيا</h1>
+<div class="kpis"><div class="kpi">مبيعات الشهر<b>2,840 ر.ع</b></div><div class="kpi">الطلبات<b>126</b></div><div class="kpi">متوسط الطلب<b>22.5 ر.ع</b></div><div class="kpi">الدول<b>2</b></div></div>
+<div class="card" style="margin-top:20px"><h2>الفروع والأسواق</h2><table><tr><th>السوق</th><th>الطلبات</th><th>الحالة</th></tr><tr><td>🇴🇲 عمان</td><td>104</td><td>نشط</td></tr><tr><td>🇰🇼 الكويت</td><td>22</td><td>نشط</td></tr><tr><td>🇦🇪 الإمارات</td><td>—</td><td>مرحلة التوسع</td></tr></table></div>
+<div class="card" style="margin-top:20px"><h2>ما الذي يمكن إضافته في التطبيق الفعلي؟</h2><p>الدفع الإلكتروني • إدارة المخزون • ربط شركات التوصيل • حسابات الفروع • نظام ولاء • تحليلات المبيعات • AI حقيقي للتوصيات • QR/NFC • تعدد العملات والدول.</p></div>
+</section>
+
+<footer>RUZBIA Smart Gift — Prototype for presentation</footer>
+<script>
+let cart=[];
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0)}
+function recommend(){let b=+document.getElementById('budget').value||20,o=document.getElementById('occasion').value,p=document.getElementById('person').value;let name=b>=25?'Ruzbia Oman':'بوكس ورد ودب';let price=b>=25?25:18;let r=document.getElementById('airesult');r.innerHTML=`<b>اقتراحنا لك 🎁</b><p>${name} مناسب لـ ${p} بمناسبة ${o}.</p><b>${price} ر.ع</b><br><button class="btn light" onclick="add('${name}',${price})">أضف للسلة</button>`;r.classList.add('show')}
+function smart(){let r=document.getElementById('smartResult');r.innerHTML='<div class="card"><h2>✨ اقتراح ذكي</h2><p>بوكس مخصص + ورد + رسالة باسم المستلم + تجربة رقمية عبر QR.</p><b>نسخة أولية — قابلة للربط بمحرك AI حقيقي.</b></div>';r.classList.add('show')}
+function preview(){let n=document.getElementById('name').value||'اسم المستلم';let m=document.getElementById('msg').value||'مع أطيب الأمنيات 🤍';document.getElementById('pname').textContent=n;document.getElementById('pmsg').textContent=m;document.getElementById('preview').classList.add('show')}
+function add(n,p){cart.push({n,p});alert('تمت إضافة '+n+' للسلة — '+p+' ر.ع');}
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js')}</script></body></html>
